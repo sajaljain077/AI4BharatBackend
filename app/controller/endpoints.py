@@ -17,7 +17,6 @@ def getLanguages(db:Session=Depends(get_db)):
 
 @router.post("/project")
 def getLanguages(payload_model:project_model,db:Session=Depends(get_db)):
-    print("this request", jsonable_encoder(payload_model))
     payload = jsonable_encoder(payload_model)
     resp  = {}
     new_project_obj = Project(project_title = payload.get("project_title"), project_lang_id = payload.get("target_lang_id"))
@@ -43,7 +42,7 @@ def getLanguages(payload_model:project_model,db:Session=Depends(get_db)):
     return responseModel(200, data=resp, errors= [])
 
 
-@router.post("/sentences")
+@router.put("/sentences")
 def add_translated_sentence(payload_model:translated_sentence_model,db:Session=Depends(get_db)):
     payload = jsonable_encoder(payload_model)
     tranlated_sentence = payload["sentences"]
@@ -56,3 +55,11 @@ def add_translated_sentence(payload_model:translated_sentence_model,db:Session=D
     except Exception as err:
         return responseModel(400, data={}, errors= [f"Got this error while updating {err}"])
 
+
+@router.get("/project")
+def get_all_projects(db:Session=Depends(get_db)):
+    try:
+        resp = jsonable_encoder(db.query(Project.project_id, Project.project_lang_id, Project.project_title, Language.language).join(Language, Project.project_lang_id == Language.lang_id).all())
+        return responseModel(200, data=resp, errors= [])
+    except Exception as err:
+        return responseModel(400, data={}, errors= [f"Got this error while fetching the projects {err}"])

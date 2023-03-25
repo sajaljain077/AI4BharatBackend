@@ -1,0 +1,82 @@
+									API Spec
+
+1.  /languages
+	method :- GET
+	response:- 
+	{
+		"reqId":"ksfkmsdfkmsd",
+		"errors" : [],
+		"data": [
+					{"id":1, "language":"Bengali(bn)"},
+					{"id":2, "language":"Gujrati(gu)"},
+					{"id":3, "language":"Hindi(hi)"},
+					{"id":4, "language":"kannada(kn)"},
+					{"id":5, "language":"Malayalam(ml)"} ....
+				]
+	}
+	
+2. /project
+	method :- POST
+	requestBody:-
+					{"target_lang_id":1, "project_title":"India"}
+					
+	responseBody:- 
+					{
+					"reqId":"ksfkmsdfkmsd",
+					"errors" : [],
+					"data": {
+							"project_id" : 1,
+							"sentences":[
+										{"sen_id":1, "original_sentence":"i am sajal"},
+										{"sen_id":2, "original_sentence":"i am good"},
+										{"sen_id":3, "original_sentence":"i am bad"},
+										{"sen_id":4, "original_sentence":"i can do anything"},
+										{"sen_id":5, "original_sentence":"i like to sleep"} ....
+										]
+							}
+					}
+					
+3.  /sentences
+	method :- POST
+	requestBody:- 
+					{
+					"project_id" : 1,
+					"sentences":[
+										{"sen_id":1, "tranlated_sentence":""},
+										{"sen_id":2, "tranlated_sentence":""},
+										{"sen_id":3, "tranlated_sentence":""},
+										{"sen_id":4, "tranlated_sentence":""},
+										{"sen_id":5, "tranlated_sentence":""} ....
+								]
+							}
+					}
+	response:-
+				{
+					"reqId":"ksfkmsdfkmsd",
+					"errors" : [],
+					"data": {"Edited successfully"}
+				}
+	
+	
+4. 	/project
+	method :- GET
+	response :- 
+				{
+				  "reqId": "18c0d787-5072-4972-b5fc-e5f7a7a0f8ad",
+				  "errors": [],
+				  "data": [
+					{
+					  "project_id": 1,
+					  "project_lang_id": 1,
+					  "project_title": "india",
+					  "language": "Bengali(bn)"
+					},
+					{
+					  "project_id": 4,
+					  "project_lang_id": 1,
+					  "project_title": "Sex",
+					  "language": "Bengali(bn)"
+					}.....
+					
+						]
+				}
