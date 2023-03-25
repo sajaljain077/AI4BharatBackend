@@ -1,5 +1,3 @@
-# AI4BharatBackend
-
 # Step to start the project
 1. Run- pip install requiremnets.text
 2. Create the scheme in you local by the following name -- language_trans_data_creation
